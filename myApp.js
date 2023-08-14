@@ -1,5 +1,14 @@
 const express = require('express');
 const app = express();
+//this lets me use the node module helmetJS and the correlating methods responsible for security. 
+let helmet = require('helmet')
+//this hides powered by express from malicious actors.
+app.use(helmet.hidePoweredBy())
+//this prevents hackers from injecting an iframe to imitate my website, which is used to extract info from a user.
+app.use(helmet.frameguard({ action: 'deny' }))
+//this prevents hackers from injecting code into the header. 
+app.use(helmet.xssFilter())
+
 
 
 
