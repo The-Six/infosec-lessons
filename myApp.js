@@ -27,7 +27,11 @@ app.use(
     xDownloadOptions: false,
   })
 );
+// Sets "Cross-Origin-Embedder-Policy: require-corp"
+app.use(helmet({ crossOriginEmbedderPolicy: true }));
 
+// Sets "Cross-Origin-Embedder-Policy: credentialless"
+app.use(helmet({ crossOriginEmbedderPolicy: { policy: "credentialless" } }));
 
 
 
