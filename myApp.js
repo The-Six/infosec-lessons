@@ -8,6 +8,25 @@ app.use(helmet.hidePoweredBy())
 app.use(helmet.frameguard({ action: 'deny' }))
 //this prevents hackers from injecting code into the header. 
 app.use(helmet.xssFilter())
+// This sets custom options for the
+// Content-Security-Policy header.
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        "script-src": ["'self'", "example.com"],
+      },
+    },
+  })
+);
+// This disables the Content-Security-Policy
+// and X-Download-Options headers.
+app.use(
+  helmet({
+    contentSecurityPolicy: false,
+    xDownloadOptions: false,
+  })
+);
 
 
 
